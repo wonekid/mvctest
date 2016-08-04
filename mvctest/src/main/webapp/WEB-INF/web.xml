@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>mvctest</display-name>
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>mvctest.root</param-value>
+	</context-param>
+
+
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>WEB-INF/log4j.properties</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>mvctest</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mvctest</servlet-name>
+		<!-- <url-pattern>/</url-pattern> -->
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 在此处配置session拦截器，用于验证session中是否有用户登陆信息 -->
+	<!--  
+	<filter>
+		<filter-name>authorizen</filter-name>
+		<filter-class>mvctest.filter.AuthorizenFilter</filter-class>
+	
+	</filter>
+	<filter-mapping>
+		<filter-name>authorizen</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+		-->
+	<!-- 到此结束 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>  
