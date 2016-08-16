@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="mvctest.dao.UserMapper">  
+    <resultMap type="User" id="User">  
+            <id column="userId" jdbcType="VARCHAR" property="userId"/>  
+            <result column="username" jdbcType="VARCHAR" property="username" />  
+            <result column="userpass" jdbcType="VARCHAR" property="userpass" />  
+    </resultMap>  
+  
+    <insert id="insertUser" parameterType="User">  
+        insert into user(username,userpass) values(#{username},#{userpass});  
+    </insert>  
+  
+  	<select id="selectUser" resultType="User"  parameterType="int" >
+  		select * from public.user;
+  	</select>
+  
+    <select id="selectTotalRecord" resultType="int">  
+        select count(*) from user;  
+    </select>  
+  
+</mapper>  
