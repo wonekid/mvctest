@@ -29,7 +29,8 @@
 			<h2 class="form-signin-heading">登录</h2>
 			<input type="text" name="username" class="form-control"
 				placeholder="请输入用户名" required autofocus>
-
+			<input type="password" name="userpass" class="form-control"
+				placeholder="请输入密码" required autofocus>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
 		</form>
 </body>

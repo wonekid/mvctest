@@ -3,9 +3,9 @@ package mvctest.service.impl;
 import org.springframework.stereotype.Service;
 
 import mvctest.model.User;
-import mvctest.service.MvctestService;
+import mvctest.service.IMvctestService;
 @Service("mvctestService")
-public class MvctestServiceImpl implements MvctestService {
+public class MvctestServiceImpl implements IMvctestService {
 
 	public String getNewName(User user) {
 		// TODO Auto-generated method stub

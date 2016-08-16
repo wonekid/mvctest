@@ -1,14 +1,21 @@
 package mvctest.controller;
 
+import java.util.List;
+import java.io.IOException;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sound.midi.SysexMessage;
 
+import mvctest.dao.UserDao;
 import mvctest.model.User;
-import mvctest.service.MvctestService;
+import mvctest.service.IMvctestService;
+import mvctest.service.impl.MvctestServiceImpl;
+import mvctest.service.impl.UserServiceImpl;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +31,7 @@ public class LoginController {
 	String message = "Welcome to Spring MVC";
 	String error ="用户名或密码不正确！";
 	ModelAndView mv = null;
+	UserServiceImpl userService = new UserServiceImpl();
 	/*
 	@RequestMapping("/login.do")
 	private ModelAndView handleRequest(@RequestParam(value="username",required=false)String username) {
@@ -45,10 +53,12 @@ public class LoginController {
 	}
 	*/
 	@RequestMapping("/login.do")
-	private ModelAndView handleRequest(@RequestParam(value="username",required=false)User user) {
-		
-		String username = user.getUserName();
-		
+	private ModelAndView handleRequest(@RequestParam(value="username",required=false)String username) throws Exception {
+		userService.getUserDao();
+//		UserService service = new MvctestService();
+//		user.setUserName(username);
+		List<User> list=userService.selectUser();
+		System.err.println("Controller========"+list);
 		if(username!=null&&username.equals("wangdechang")){
 			
 			System.err.println("登陆成功！============");
@@ -61,8 +71,8 @@ public class LoginController {
 			mv = new ModelAndView("error");
 			mv.addObject("error", error);
 			
+	
 		}
 		return mv;
 	}
-	
 }

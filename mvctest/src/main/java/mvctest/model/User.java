@@ -2,18 +2,30 @@ package mvctest.model;
 
 public class User {
 	private String userName;
-	private String password;
-	
-   public void setPassword(String password) {
-	this.password = password;
+	private String userpass;
+   public User(){
+	   
    }
-   public String getPassword() {
-	return password;
+   public User(String username,String userpass){
+	   this.userName = username;
+	   this.userpass = userpass;
+	   
+   }
+   
+   public void setuserpass(String userpass) {
+	this.userpass = userpass;
+   }
+   public String getuserpass() {
+	return userpass;
    }
    public void setUserName(String userName) {
 	this.userName = userName;
    }
    public String getUserName() {
 	return userName;
-}
+   }
+   //默认实现toString()方法
+   public String toString(){
+	   return "[username="+userName+","+"userpass="+userpass+"]";
+   }
 }
