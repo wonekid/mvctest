@@ -1,6 +1,8 @@
 package mvctest.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -20,10 +22,12 @@ import mvctest.service.impl.UserServiceImpl;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.SimpleFormController;
 
 
 @Controller
@@ -52,26 +56,38 @@ public class LoginController {
 		return mv;
 	}
 	*/
-	@RequestMapping("/login.do")
-	private ModelAndView handleRequest(@RequestParam(value="username",required=false)String username) throws Exception {
-		userService.getUserDao();
+	@RequestMapping(value="/login.do",method=RequestMethod.POST) //从页面传入Controller参数的两种方法：1.通过@RequestParam 传递单个参数。2.通过ModelAttribute传递一个对象
+	private ModelAndView handleRequest(@ModelAttribute("user") User user) throws Exception {
+//		userService.getUserDao();
 //		UserService service = new MvctestService();
 //		user.setUserName(username);
-		List<User> list=userService.selectUser();
-		System.err.println("Controller========"+list);
-		if(username!=null&&username.equals("wangdechang")){
-			
-			System.err.println("登陆成功！============");
-			mv = new ModelAndView("Helloworld");
+		String username = user.getUsername();
+		String userpass = user.getUserpass();
+		System.err.println(username+"\t"+userpass);
+		List<Map<String,User>> list=userService.selectUser();
+		
+		String uname = null;
+		String upass = null;
+		for (int i=0;i<list.size();i++) {
+			uname = String.valueOf(list.get(i).get("username"));
+			upass = String.valueOf(list.get(i).get("userpass"));
+			System.err.println("我擦了+++++++++++"+username+"\t"+userpass);
+			System.err.println("我擦类+++++++++++"+uname+"\t"+upass);
+			if(uname.equals(username)&&upass.equals(userpass)){
+				
+				System.err.println("登陆成功！============");
+				mv = new ModelAndView("Helloworld");
 //			mv.setViewName("登陆成功！");
-			mv.addObject("message", message);
-			mv.addObject("username", username);
-		}else{
-			System.err.println("登陆失败！============");
-			mv = new ModelAndView("error");
-			mv.addObject("error", error);
-			
-	
+				mv.addObject("message", message);
+				mv.addObject("username", username);
+				break;
+			}else{
+				System.err.println("登陆失败！============");
+				mv = new ModelAndView("error");
+				mv.addObject("error", error);
+				
+				
+			}
 		}
 		return mv;
 	}

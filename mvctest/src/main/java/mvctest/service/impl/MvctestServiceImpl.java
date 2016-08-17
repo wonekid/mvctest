@@ -10,7 +10,7 @@ public class MvctestServiceImpl implements IMvctestService {
 	public String getNewName(User user) {
 		// TODO Auto-generated method stub
 		System.err.println("===========Service");
-		return "Hello Spring"+user.getUserName();
+		return "Hello Spring"+user.getUsername();
 	}
 
 	public String getNewName(String userName) {

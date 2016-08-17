@@ -13,7 +13,7 @@
         insert into user(username,userpass) values(#{username},#{userpass});  
     </insert>  
   
-  	<select id="selectUser" resultType="User"  parameterType="int" >
+  	<select id="selectUser" resultType="java.util.HashMap"  parameterType="int" >
   		select * from public.user;
   	</select>
   
