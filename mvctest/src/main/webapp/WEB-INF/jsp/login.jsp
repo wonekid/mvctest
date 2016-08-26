@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@page import="java.net.URLDecoder" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,15 +24,22 @@
 <script
 	src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
 </head>
+<script type="text/javascript" src="js/login.js">
+	
+</script>
 <body>
 	<div class="container">
-		<form class="form-signin" role="form" action="login.do" method="post">
+		<form class="form-signin" role="form" method="post" action="login.do">
 			<h2 class="form-signin-heading">登录</h2>
-			<input type="text" name="username" class="form-control"
-				placeholder="请输入用户名" required autofocus>
-			<input type="password" name="userpass" class="form-control"
-				placeholder="请输入密码" required autofocus>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+			<input id="username" type="text" name="username" class="form-control"
+				placeholder="请输入用户名" required autofocus> <input
+				id="userpass" type="password" name="userpass" class="form-control"
+				placeholder="请输入密码" required autofocus> <a
+				style="color: #ff0000">${error}</a>
+			<button class="btn btn-lg btn-primary btn-block"
+				type="submit">登录</button>
 		</form>
 </body>
+
+
 </html>

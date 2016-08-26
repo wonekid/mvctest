@@ -6,5 +6,5 @@ import java.util.Map;
 import mvctest.model.User;
 
 public interface IUserService {
-	public List<Map<String,User>> selectUser() throws Exception;
+	public List<Map<String,User>> selectUser(User user) throws Exception;
 }

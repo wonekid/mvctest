@@ -19,8 +19,8 @@ public class UserServiceImpl implements IUserService{
 	}
 
 
-	public List<Map<String,User>> selectUser() throws Exception {
-		list = userDao.select();
+	public List<Map<String,User>> selectUser(User user) throws Exception {
+		list = userDao.select(user);
 		System.err.println("userService.selectUser()======:"+list);
 		return list;
 	}

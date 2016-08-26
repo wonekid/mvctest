@@ -13,7 +13,9 @@
         <setting name="defaultStatementTimeout" value="25000" />  
     </settings>  
     <typeAliases>  
+    <!-- 此处映射 Dao的实体类 -->
         <typeAlias type="mvctest.model.User" alias="User" />  
+        <typeAlias type="mvctest.model.Grade" alias="Grade"/>
     </typeAliases>  
     <environments default="development">  
         <environment id="development">  
@@ -28,6 +30,8 @@
     </environments>  
   
     <mappers>  
-        <mapper resource="mvctest/dao/UserMapper.xml" />  
+    <!-- 此处映射 Dao的mapper-->
+        <mapper resource="mvctest/dao/UserMapper.xml" /> 
+        <mapper resource="mvctest/dao/GradeMapper.xml"/> 
     </mappers>  
 </configuration>  

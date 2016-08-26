@@ -4,7 +4,8 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="mvctest.dao.UserMapper">  
     <resultMap type="User" id="User">  
-            <id column="userId" jdbcType="VARCHAR" property="userId"/>  
+           <!--   <id column="userId" jdbcType="VARCHAR" property="userId"/>  -->
+            <result column="userId" jdbcType="VARCHAR" property="userId"/>
             <result column="username" jdbcType="VARCHAR" property="username" />  
             <result column="userpass" jdbcType="VARCHAR" property="userpass" />  
     </resultMap>  
@@ -12,11 +13,12 @@
     <insert id="insertUser" parameterType="User">  
         insert into user(username,userpass) values(#{username},#{userpass});  
     </insert>  
-  
-  	<select id="selectUser" resultType="java.util.HashMap"  parameterType="int" >
-  		select * from public.user;
+  	<!-- parameterType是传入参数数据类型类型，比如，此处传入的参数是username，显然是String,并且是由User对象传入的参数 -->
+  	<!-- resultType :是查询结果返回值类型，此处是返回hashmap -->
+  	<select id="selectUser" resultType="java.util.HashMap"  parameterType="String" >
+  		select * from public.user where username=#{username};
   	</select>
-  
+  	
     <select id="selectTotalRecord" resultType="int">  
         select count(*) from user;  
     </select>  
